@@ -37,11 +37,12 @@ company_data_source = {
 
 # 融合逻辑消息队列
 merge_mq_conf = {
-    'host': 'cs5.sz-internal.haizhi.com',
+    'host': '172.17.1.120',
     'port': 11300,
     'tube': 'extract_info'
 }
 
+# 在线工商解析需要用到
 parse_beanstalk_conf = {
     'host': 'cs0.sz-internal.haizhi.com', 'port': 11400,
     'tube': 'online_gsxt_parse'
