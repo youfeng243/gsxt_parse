@@ -2,11 +2,11 @@
 
 # 新网页库
 mongo_db_webpage_new = {
-    "host": "172.16.215.2",
+    "host": "172.17.1.119",
     "port": 40042,
-    "db": "crawl_data_new",
-    "username": "work",
-    "password": "haizhi",
+    "db": "crawl_data",
+    "username": 'work',
+    "password": 'haizhi',
 }
 #
 # mongo_db_webpage_new = {
@@ -19,19 +19,19 @@ mongo_db_webpage_new = {
 
 # 旧网页库
 mongo_db_webpage_old = {
-    "host": "172.16.215.2",
+    "host": "172.17.1.119",
     "port": 40042,
     "db": "crawl_data",
-    "username": "offline",
-    "password": "offline",
+    "username": 'work',
+    "password": 'haizhi',
 }
 
 company_data_source = {
-    "host": "172.16.215.2",
-    "port": 40042,
-    "db": "company_data",
-    "username": "work",
-    "password": "haizhi",
+    'host': "172.17.1.119",
+    'port': 40042,
+    'db': 'company_data',
+    "username": 'work',
+    "password": 'haizhi',
 }
 
 
@@ -42,7 +42,7 @@ merge_mq_conf = {
     'tube': 'extract_info'
 }
 
-beanstalk_consumer_conf = {
+parse_beanstalk_conf = {
     'host': 'cs0.sz-internal.haizhi.com', 'port': 11400,
     'tube': 'online_gsxt_parse'
 }

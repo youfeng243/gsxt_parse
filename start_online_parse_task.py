@@ -9,7 +9,7 @@ from common.config_parser import ConfigParser
 from common.generator import create_crawl_object
 from common.global_resource import global_log
 from common.pybeanstalk import PyBeanstalk
-from config.conf import beanstalk_consumer_conf
+from config.conf import parse_beanstalk_conf
 
 is_running = True
 
@@ -25,7 +25,7 @@ class StartTaskCrawler(object):
         self.worker_list = {}
         self.config_list = {}
         self.pool = None
-        self.beanstalk_consumer_conf = beanstalk_consumer_conf
+        self.parse_beanstalk_conf = parse_beanstalk_conf
 
         # 没有指定配置文件直接抛异常
         if config_file is None or config_file == '':
@@ -38,8 +38,8 @@ class StartTaskCrawler(object):
         self.log = global_log
 
         # 开启beanstalk
-        self.beanstalk = PyBeanstalk(self.beanstalk_consumer_conf['host'], self.beanstalk_consumer_conf['port'])
-        self.tube = self.beanstalk_consumer_conf['tube']
+        self.beanstalk = PyBeanstalk(self.parse_beanstalk_conf['host'], self.parse_beanstalk_conf['port'])
+        self.tube = self.parse_beanstalk_conf['tube']
 
         # 初始化worker
         self.init_worker(self.config_list)
