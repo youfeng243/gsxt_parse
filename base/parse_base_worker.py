@@ -515,6 +515,20 @@ class ParseBaseWorker(TaskBaseWorker):
             self.company_data_db.insert_batch_data(self.offline_all_list, [data])
             self.log.info('insert new company = {company}'.format(company=_id))
 
+    # 获得基本信息url
+    @staticmethod
+    def __get_change_info_url(change_info):
+        if not isinstance(change_info, dict):
+            return ''
+        change_info_list = change_info.get(Model.type_list)
+        if change_info_list is None:
+            return ''
+        if not isinstance(change_info_list, list):
+            return ''
+        if len(change_info_list) <= 0:
+            return ''
+        return change_info_list[0].get('url', '')
+
     # 解析成员
     def __parse_model(self, company, data_list, item):
         model = {}
@@ -548,11 +562,14 @@ class ParseBaseWorker(TaskBaseWorker):
 
                 model.update(field_info_dict)
 
-        # todo 暂先去掉 反馈太多 会导致抓取压力很大
-        # # 如果有抓取失败的
-        # if is_crawl_fail:
-        #     # 反馈抓取失败, 重新抓取
-        #     self.report_crawl_fail(item)
+        if GsModel.CHANGERECORDS in model:
+            field_info = data_list.get(Model.change_info)
+            change_info_url = self.__get_change_info_url(field_info)
+            change_list = model.get(GsModel.CHANGERECORDS)
+            if change_list is not None:
+                for change_item in change_list:
+                    change_item['url'] = change_info_url
+                model[GsModel.CHANGERECORDS] = change_list
 
         return model
 
