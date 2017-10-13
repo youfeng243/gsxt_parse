@@ -2,7 +2,7 @@
 
 # 新网页库
 mongo_db_webpage_new = {
-    "host": "172.17.1.119",
+    "host": "Crawler-DataServer1",
     "port": 40042,
     "db": "crawl_data",
     "username": 'work',
@@ -19,7 +19,7 @@ mongo_db_webpage_new = {
 
 # 旧网页库
 mongo_db_webpage_old = {
-    "host": "172.17.1.119",
+    "host": "Crawler-DataServer1",
     "port": 40042,
     "db": "crawl_data",
     "username": 'work',
@@ -27,7 +27,7 @@ mongo_db_webpage_old = {
 }
 
 company_data_source = {
-    'host': "172.17.1.119",
+    'host': "Crawler-DataServer1",
     'port': 40042,
     'db': 'company_data',
     "username": 'work',
@@ -37,7 +37,7 @@ company_data_source = {
 
 # 融合逻辑消息队列
 merge_mq_conf = {
-    'host': '172.17.1.120',
+    'host': 'Crawler-Downloader2',
     'port': 11300,
     'tube': 'extract_info'
 }
